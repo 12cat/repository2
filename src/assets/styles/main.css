@@ -1,0 +1,234 @@
+* {padding:0; margin:0; font-family: "Microsoft YaHei"; font-size: 12px;}
+*:focus {outline: none;}
+html, body, #app, #normal {width: 100%; height: 100%;}
+ul, li {list-style:none;}
+a {text-decoration: none;}
+
+.left {float: left;}
+.right {float: right;}
+
+.cont-menu .el-submenu__title {
+  margin-top: 10px;
+  padding: 0;
+  height: 45px;
+  line-height: 45px;
+  font-size: 14px;
+  border-top: 1px solid #eee;
+}
+.cont-menu .el-menu-item-group__title {
+  padding: 0;
+}
+.cont-menu .el-menu-item {
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+}
+.content .el-main {
+  padding: 0 20px 20px;
+}
+.content .el-card {
+  margin-top: 20px;
+}
+
+/* elemetn ui 优化 */
+.el-range-editor.el-input__inner {
+  width: auto;;
+}
+.el-main .el-form-item__label,
+.el-main .el-range-input,
+.el-main .el-input__inner {
+  font-size: 12px;
+}
+.el-form {
+  margin: 20px 0 0;
+  overflow: hidden;
+}
+.el-table {
+  margin-top: 50px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.box-card .el-card__header {
+  height: 50px;
+  padding: 8px 20px;
+}
+.box-card .el-card__header .clearfix > span {
+  font-size: 15px;
+  line-height: 40px;
+}
+.box-card .el-radio {
+  margin-top: 8px;
+}
+.box-card .el-radio span {
+  height: 14px;
+  font-size: 12px;
+}
+.box-card .el-radio__label {
+  margin-right: 20px;
+}
+.box-card .el-pagination__total {
+  position: absolute;
+  left: 0;
+}
+.box-card .el-pagination__sizes {
+  float: right;
+}
+.box-card .el-select-dropdown__item {
+  font-size: 12px;
+}
+.el-select-dropdown__list .el-select-dropdown__item span,
+.box-card .el-pagination__sizes .el-input .el-input__inner {
+  font-size: 12px;
+}
+.box-card .el-pagination {
+  position: relative;
+  text-align: right;
+  width: 100%;
+  height: 45px;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+/* router-link 按钮 */
+.button--text {
+  display: inline-block;
+  margin: 0;
+  padding: 9px 15px 9px 0;
+  line-height: 1;
+  border: 1px solid #dcdfe6;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-transition: .1s;
+  outline: 0;
+  transition: .1s;
+  border-color: transparent;
+  background-color: transparent;
+  font-size: 12px;
+  font-weight: 500;
+  color: #409EFF;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.button--text:hover {
+  color: #66b1ff;
+}
+.button--primary {
+  display: inline-block;
+  margin: 0;
+  margin-left: 10px;
+  padding: 9px 15px;
+  line-height: 1;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-transition: .1s;
+  outline: 0;
+  transition: .1s;
+  background-color: #409EFF;
+  border: 1px solid #409EFF;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.button--primary:hover {
+  background: #66b1ff;
+  border-color: #66b1ff;
+  color: #fff;
+}
+.button--return {
+  display: inline-block;
+  margin: 0;
+  margin-left: 10px;
+  padding: 9px 15px;
+  line-height: 1;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-transition: .1s;
+  outline: 0;
+  transition: .1s;
+  background-color: #fff;
+  border: 1px solid #dcdfe6;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #606266;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.button--return:hover {
+  color: #409EFF;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
+
+.el-checkbox+.el-checkbox {
+  margin-left: 0;
+}
+.el-checkbox {
+  margin-right: 30px;
+}
+
+/* 全局 loading */
+#app .el-loading-mask {
+  position: fixed;
+  z-index: 999999999;
+  background-color: rgba(0,0,0,.5);
+  margin: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+}
+.el-loading-mask .el-loading-spinner .el-loading-text {
+  color: #fff;
+}
+.el-loading-spinner i {
+  height: 40px;
+  width: 40px;
+}
+.el-icon-loading:before {
+  content: ''
+}
+
+/* table style */
+.el-table .cell {
+  line-height: 32px;
+}
+
+/* 通用样式 */
+.w100 { width: 100px !important; }
+.w200 { width: 200px !important; }
+.w180 { width: 180px !important; }
+.w300 { width: 300px !important; }
+.w400 { width: 400px !important; }
+
+.mar-l100 { margin-left: 100px; }
+.mar-l120 { margin-left: 120px; }
+
+.mar-t50 { margin-top: 50px; }
+.mar-t80 { margin-top: 80px; }
+
+.el-button+.el-button,
+.button--return {
+  margin-left: 0;
+}
+.el-button {
+  margin-right: 10px;
+}
+
+.center {
+  text-align: center;
+}
+.t-right {
+  text-align: right;
+}
