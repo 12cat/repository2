@@ -11,7 +11,6 @@
         <el-tree :data="dataList"
           :props="defaultProps"
           node-key="id"
-          default-expand-all
           :render-content="renderContent">
         </el-tree>
       </div>
