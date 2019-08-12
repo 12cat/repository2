@@ -34,61 +34,58 @@ export default {
   data () {
     return {
       active: '',
-      menuList: [
-        {
-          desc: '账号管理',
-          list: [
-            {
-              desc: '账号查询',
-              path: '/system/account'
-            }, {
-              desc: '部门管理',
-              path: '/system/department'
-            }
-          ]
-        }, {
-          desc: '页面管理',
-          list: [
-            {
-              desc: '页面内容管理',
-              path: '/page'
-            }, {
-              desc: '共献图谱管理',
-              path: '/page/map'
-            }, {
-              desc: '幻灯管理',
-              path: '/page/slide'
-            }
-          ]
-        }, {
-          desc: '文档管理',
-          list: [
-            {
-              desc: '文档管理',
-              path: '/file'
-            }, {
-              desc: '文档类目管理',
-              path: '/file/category'
-            }
-          ]
-        }
-      ]
+      auth: [],
+      menuList: []
     }
   },
   components: { top },
   mounted () {
     // 接口调用，获取系统菜单列表
-    // this.getAuthorityList()
     this.$store.state.unauth = true
+    this.getAuthorityList()
   },
   methods: {
+    info (data) {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].code === 101) {
+          this.menuList.push({
+            desc: '角色管理',
+            list: [{desc: '角色管理', path: '/role'}]
+          })
+        }
+        if (data[i].code === 102) {
+          this.menuList.push({
+            desc: '账号管理',
+            list: [
+              {desc: '账号查询', path: '/system/account'},
+              {desc: '部门管理', path: '/system/department'}
+            ]
+          })
+        }
+        if (data[i].code === 103) {
+          this.menuList.push({
+            desc: '页面管理',
+            list: [
+              {desc: '页面内容管理', path: '/page'},
+              {desc: '共献图谱管理', path: '/page/map'},
+              {desc: '幻灯管理', path: '/page/slide'}
+            ]
+          })
+        }
+        if (data[i].code === 104) {
+          this.menuList.push({
+            desc: '文档管理',
+            list: [
+              {desc: '文档管理', path: '/file'},
+              {desc: '文档类目管理', path: '/file/category'}
+            ]
+          })
+        }
+      }
+    },
     getAuthorityList () {
       this.$service.kms.getAuthorityList().then(res => {
-        if (res.data) {
-          // if (res.data.length > 0) {
-          //   this.active = this.$router.history.current.fullPath
-          // }
-        }
+        this.info(res.data)
       })
     }
   }

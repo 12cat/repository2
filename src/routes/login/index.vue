@@ -47,11 +47,11 @@ export default {
           this.$message.warning(res.errorMeg)
         } else {
           arr = res.data.authorities
-          if (arr.indexOf(102)) {
+          if (arr.indexOf(102) > -1) {
             this.$router.push('/system/account')
-          } else if (arr.indexOf(103)) {
+          } else if (arr.indexOf(103) > -1) {
             this.$router.push('/file')
-          } else if (arr.indexOf(104)) {
+          } else if (arr.indexOf(104) > -1) {
             this.$router.push('/page')
           }
         }

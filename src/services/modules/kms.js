@@ -21,6 +21,17 @@ export default {
     // 获取操作日志
     {key: 'getOperatorLog', url: 'user/getOperatorLog'},
 
+    // 获取角色列表
+    {key: 'getRoleList', url: 'config/getRoleList'},
+    // 修改用户角色
+    {key: 'modifyUserRole', url: 'config/modifyUserRole'},
+    // 删除角色
+    {key: 'deleteRole', url: 'config/deleteRole'},
+    // 获取角色信息
+    {key: 'getRoleAuthority', url: 'config/getRoleAuthority'},
+    // 修改角色
+    {key: 'modifyRoleAuthority', url: 'config/modifyRoleAuthority'},
+
     // 获取权限列表
     {key: 'getAuthorityList', url: 'user/getAuthorityList'},
     // 获取其他用户权限

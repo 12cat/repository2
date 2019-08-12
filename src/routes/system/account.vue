@@ -53,7 +53,7 @@
         </el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
-            <el-button type="text" @click="updateAuthorityDialog(scope.row)">修改权限</el-button>
+            <el-button type="text" @click="updateRoleDialog(scope.row)">修改角色</el-button>
             <el-button type="text" @click="updateStatusDialog(scope.row)">修改状态</el-button>
             <el-button type="text" @click="updateInfoDialog(scope.row)">修改信息</el-button>
           </template>
@@ -110,28 +110,22 @@
       </div>
     </el-dialog>
 
-     <!-- 修改权限 -->
-    <el-dialog title="修改权限" :visible.sync="dialog3">
+     <!-- 修改角色 -->
+    <el-dialog title="修改角色" :visible.sync="dialog3">
       <el-form label-width="100">
         <el-form-item label="姓名">
           <span>{{ update3name }}</span>
         </el-form-item>
-        <el-form-item class="dialogBox" label="权限">
-          <el-tree
-            :data="update3tree"
-            show-checkbox
-            default-expand-all
-            :default-checked-keys="update3list"
-            node-key="id"
-            ref="tree"
-            highlight-current
-            :props="defaultProps">
-          </el-tree>
+        <el-form-item label="角色">
+          <el-select class="w200" v-model="update3role">
+            <el-option v-for="item in roleList" :key="item.id"
+              :label="item.name" :value="item.id"></el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialog3 = false">取 消</el-button>
-        <el-button type="primary" @click="updateAuthority">确 定</el-button>
+        <el-button type="primary" @click="updateRole">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -176,17 +170,18 @@ export default {
       updateDepartment: [],
       updateSecrecy: '',
 
-      update3tree: [],
+      roleList: [], // 角色列表
       dialog3: false,
       update3id: '',
       update3name: '',
-      update3list: []
+      update3role: ''
     }
   },
   mounted () {
     this.getList()
     this.getDepartmentList()
     this.getSecrecyList()
+    this.getRoleList()
   },
   methods: {
     // 重置
@@ -287,30 +282,27 @@ export default {
         }
       })
     },
-    updateAuthorityDialog (row) {
+    updateRoleDialog (row) {
       this.update3id = row.id
       this.update3name = row.name
-      this.getTree()
+      this.update3role = row.role
       this.dialog3 = true
     },
-    getTree () {
-      this.$service.kms.getUserAuthority({
-        uid: this.update3id
-      }).then(res => {
+    getRoleList () {
+      this.$service.kms.getRoleList().then(res => {
         if (res) {
-          this.update3tree = res.data.tree
-          this.update3list = res.data.list
+          this.roleList = res.data
         }
       })
     },
-    updateAuthority () {
-      let authority = this.$refs.tree.getCheckedKeys()
-      this.$service.kms.modifyUserAuthority({
+    updateRole () {
+      this.$service.kms.modifyUserRole({
         uid: this.update3id,
-        authority: authority
+        roleId: this.update3role
       }).then(res => {
         if (res) {
           this.$message.success('操作成功！')
+          this.getList(this.pageIndex)
           this.dialog3 = false
         }
       })
