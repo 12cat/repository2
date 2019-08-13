@@ -6,8 +6,7 @@
       </div>
       <div class="form">
         <p class="top t-right">
-          <el-button type="primary" @click="addDepartmentDialog(0)">添加一级目录</el-button>
-          <el-button type="primary" @click="addDepartmentDialog(1)">添加二级目录</el-button>
+          <el-button type="primary" @click="addDepartmentDialog()">添加一级目录</el-button>
         </p>
         <el-tree :data="dataList"
           :props="defaultProps"
@@ -18,13 +17,10 @@
     </el-card>
 
     <!-- 添加目录 -->
-    <el-dialog :title="'添加'+['一', '二'][dialog1type]+'级目录'" :visible.sync="dialog1">
+    <el-dialog :title="'添加级目录'" :visible.sync="dialog1">
       <el-form>
-        <el-form-item v-show="dialog1type === 1" label="一级目录" label-width="100">
-          <el-select class="w200" v-model="parentId">
-            <el-option v-for="item in dataList" :key="item.id"
-              :label="item.name" :value="item.id"></el-option>
-          </el-select>
+        <el-form-item v-show="parentId" label="上级目录" label-width="100">
+          <span>{{ parentName }}</span>
         </el-form-item>
         <el-form-item label="目录名称">
           <el-input class="w200" v-model="modifyName"></el-input>
@@ -76,11 +72,11 @@ export default {
         label: 'name'
       },
 
-      dialog1type: 0,
       dialog1: false,
       dialog2: false,
       dialog3: false,
       parentId: '',
+      parentName: '',
       modifyId: '',
       modifyName: '',
       modifySequence: ''
@@ -108,15 +104,21 @@ export default {
           <span>
             （排序：{ data.sequence }）
             <span style="padding-left: 30px;">
+              <el-button style="font-size: 12px;" type="text" on-click={ () => this.addDepartmentDialog(data) }>添加</el-button>
               <el-button style="font-size: 12px;" type="text" on-click={ () => this.updateNameDialog(data) }>编辑</el-button>
               <el-button style="font-size: 12px;" type="text" on-click={ () => this.setSequenceDialog(data) }>调整顺序</el-button>
             </span>
           </span>
         </span>)
     },
-    addDepartmentDialog (n) {
-      this.dialog1type = n
-      this.parentId = ''
+    addDepartmentDialog (data) {
+      if (data) {
+        this.parentId = data.id
+        this.parentName = data.name
+      } else {
+        this.parentId = ''
+        this.parentName = ''
+      }
       this.modifyId = ''
       this.modifyName = ''
       this.dialog1 = true

@@ -154,9 +154,7 @@ export default {
       } else {
         this.id = null
         this.name = ''
-        this.$service.kms.getRoleAuthority({
-          roleId: this.roleList[0].id
-        }).then(res => {
+        this.$service.kms.getRoleAuthority().then(res => {
           if (res) {
             this.backCode = []
             this.historyCode = []
