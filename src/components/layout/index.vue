@@ -81,6 +81,15 @@ export default {
             ]
           })
         }
+        if (data[i].code === 105) {
+          this.menuList.push({
+            desc: '日志与统计',
+            list: [
+              {desc: '数据统计', path: '/other/total'},
+              {desc: '查看日志', path: '/other/log'}
+            ]
+          })
+        }
       }
     },
     getAuthorityList () {

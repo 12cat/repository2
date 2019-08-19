@@ -6,6 +6,7 @@ import page from './page'
 import file from './file'
 import role from './role'
 import login from './login'
+import other from './other'
 
 Vue.use(Router)
 
@@ -16,6 +17,7 @@ const router = new Router({
     file,
     role,
     login,
+    other,
     {
       path: '*',
       redirect: '/login'

@@ -86,6 +86,9 @@ export default {
     // 操作文档
     {key: 'uploadDocument', url: 'config/uploadDocument'},
     // 操作文档
-    {key: 'modifyDocument', url: 'document/modifyDocument'}
+    {key: 'modifyDocument', url: 'document/modifyDocument'},
+
+    // 日志搜索
+    {key: 'getRecords', url: 'config/getRecords'}
   ]
 }

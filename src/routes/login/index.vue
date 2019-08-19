@@ -53,6 +53,8 @@ export default {
             this.$router.push('/file')
           } else if (arr.indexOf(104) > -1) {
             this.$router.push('/page')
+          } else if (arr.indexOf(105) > -1) {
+            this.$router.push('/other/total')
           }
         }
       })
