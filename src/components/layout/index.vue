@@ -62,7 +62,7 @@ export default {
             ]
           })
         }
-        if (data[i].code === 103) {
+        if (data[i].code === 104) {
           this.menuList.push({
             desc: '页面管理',
             list: [
@@ -72,7 +72,7 @@ export default {
             ]
           })
         }
-        if (data[i].code === 104) {
+        if (data[i].code === 103) {
           this.menuList.push({
             desc: '文档管理',
             list: [

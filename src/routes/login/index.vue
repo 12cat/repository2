@@ -47,7 +47,9 @@ export default {
           this.$message.warning(res.errorMeg)
         } else {
           arr = res.data.authorities
-          if (arr.indexOf(102) > -1) {
+          if (arr.indexOf(101) > -1) {
+            this.$router.push('/role')
+          } else if (arr.indexOf(102) > -1) {
             this.$router.push('/system/account')
           } else if (arr.indexOf(103) > -1) {
             this.$router.push('/file')
