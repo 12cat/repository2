@@ -24,7 +24,7 @@ export default {
       this.$service.kms.logout().then(res => {
         this.$router.push('/login')
         this.$store.state.user_name = undefined
-      })
+      }).catch(_ => {})
     }
   }
 }

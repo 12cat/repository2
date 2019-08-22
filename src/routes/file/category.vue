@@ -77,7 +77,7 @@ export default {
         if (res) {
           this.dataList = res.data
         }
-      })
+      }).catch(_ => {})
     },
     renderContent (h, { node, data, store }) {
       return (
@@ -141,7 +141,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.modifyCategory({id, parentId, del: 1})
-      })
+      }).catch(_ => {})
     },
     sequence (id, parentId, sequence) {
       this.modifyCategory({id, parentId, sequence, del: 0})
@@ -154,7 +154,7 @@ export default {
           this.dialog1 = false
           this.dialog2 = false
         }
-      })
+      }).catch(_ => {})
     }
   }
 }

@@ -158,7 +158,7 @@ export default {
     getSecrecyList () {
       this.$service.kms.getSecrecyList().then(res => {
         this.secrecyList = res.data || []
-      })
+      }).catch(_ => {})
     },
     getcategoryList () {
       this.$service.kms.getCategoryList({
@@ -168,7 +168,7 @@ export default {
         if (res) {
           this.categoryList = res.data
         }
-      })
+      }).catch(_ => {})
     },
     getList (index) {
       this.pageIndex = index || 1
@@ -188,7 +188,7 @@ export default {
           this.dataList = res.data.page.data
           this.total = res.data.page.total
         }
-      })
+      }).catch(_ => {})
     },
     delFile (id) {
       this.$confirm('确认需要删除该文档吗？', '提示', {
@@ -199,8 +199,8 @@ export default {
         this.$service.kms.deleteDocument({id}).then(res => {
           this.$message.success('操作成功！')
           this.getList(this.pageIndex)
-        })
-      })
+        }).catch(_ => {})
+      }).catch(_ => {})
     },
     toRecommend (item) {
       this.$service.kms.recommendDocument({
@@ -209,7 +209,7 @@ export default {
       }).then(res => {
         this.$message.success('操作成功！')
         this.getList(this.pageIndex)
-      })
+      }).catch(_ => {})
     },
     editFile (id) {
       this.$service.kms.getDocumentById({id}).then(res => {
@@ -228,7 +228,7 @@ export default {
         this.dist(this.param.category, this.categoryList)
         this.param.categoryName = this.arr
         this.dialog = true
-      })
+      }).catch(_ => {})
     },
     dist (id, list) {
       for (let i = 0; i < list.length; i++) {
@@ -248,7 +248,7 @@ export default {
         if (res) {
           this.$message.success('文档上传成功！')
         }
-      })
+      }).catch(_ => {})
     },
     uploadFile (res, file) {
       if (res.success) {

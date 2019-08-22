@@ -93,7 +93,7 @@ export default {
         level: 100
       }).then(res => {
         if (res) this.dataList = res.data
-      })
+      }).catch(_ => {})
     },
     renderContent (h, { node, data, store }) {
       return (
@@ -133,7 +133,7 @@ export default {
           this.$message.success('操作成功！')
           this.dialog1 = false
         }
-      })
+      }).catch(_ => {})
     },
     updateNameDialog (data) {
       this.modifyId = data.id
@@ -150,7 +150,7 @@ export default {
           this.$message.success('操作成功！')
           this.dialog2 = false
         }
-      })
+      }).catch(_ => {})
     },
     setSequenceDialog (data) {
       this.modifyId = data.id
@@ -167,7 +167,7 @@ export default {
           this.$message.success('操作成功！')
           this.dialog3 = false
         }
-      })
+      }).catch(_ => {})
     }
   }
 }

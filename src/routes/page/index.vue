@@ -104,7 +104,7 @@ export default {
             this.getCategoryList(this.type)
           }
         }
-      })
+      }).catch(_ => {})
     },
     getCategoryList (id) {
       this.$service.kms.getPageCategory({
@@ -113,14 +113,14 @@ export default {
         if (res) {
           this.categoryList = res.data
         }
-      })
+      }).catch(_ => {})
     },
     getAllCategory () {
       this.$service.kms.getAllCategory().then(res => {
         if (res) {
           this.allList = res.data
         }
-      })
+      }).catch(_ => {})
     },
     delItem (t1, t2) {
       let arr = this.categoryList
@@ -183,7 +183,7 @@ export default {
         if (res) {
           this.$message.success('操作成功！')
         }
-      })
+      }).catch(_ => {})
     },
     getParam () {
       let param = []

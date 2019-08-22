@@ -73,7 +73,7 @@ export default {
         if (res) {
           this.dataList = res.data
         }
-      })
+      }).catch(_ => {})
     },
     modeifyPathDialog (row) {
       this.modifyId = row.id
@@ -93,7 +93,7 @@ export default {
           this.getList()
           this.dialogShow = false
         }
-      })
+      }).catch(_ => {})
     },
     uploadFile (res, file) {
       if (res.data) {

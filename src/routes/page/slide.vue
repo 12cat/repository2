@@ -99,7 +99,7 @@ export default {
     getList () {
       this.$service.kms.getSlideList().then(res => {
         if (res) this.dataList = res.data
-      })
+      }).catch(_ => {})
     },
     showDialog (row) {
       if (row) {
@@ -140,7 +140,7 @@ export default {
           this.dialog = false
           this.dialog3 = false
         }
-      })
+      }).catch(_ => {})
     },
     uploadFile (res, file) {
       if (res.data) {

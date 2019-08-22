@@ -20,11 +20,15 @@
         </p>
       </div>
       <el-table :data="dataList">
-        <el-table-column prop="name" label="文件总数"></el-table-column>
-        <el-table-column prop="name" label="累计下载数"></el-table-column>
-        <el-table-column prop="name" label="在线用户数"></el-table-column>
-        <el-table-column prop="name" label="日登录数"></el-table-column>
-        <el-table-column prop="name" label="日浏览数"></el-table-column>
+        <el-table-column label="日期">
+          <template slot-scope="scope">
+            <span>{{ scope.row.createTime | ymd }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="download" label="每日下载"></el-table-column>
+        <el-table-column prop="upload" label="每日上传"></el-table-column>
+        <el-table-column prop="login" label="每日登录"></el-table-column>
+        <el-table-column prop="visit" label="每日访问"></el-table-column>
       </el-table>
       <el-pagination :current-page.sync="pageIndex"
         :page-size="20"
@@ -63,20 +67,26 @@ export default {
         startTime = this.date[0]
         endTime = this.date[1]
       }
-      this.$service.kms.searchDocument({
+      this.$service.kms.getStat({
         startTime: startTime,
         endTime: endTime,
         pageIndex: this.pageIndex,
         pageSize: 20
       }).then(res => {
         if (res) {
-          this.dataList = res.data.page.data
-          this.total = res.data.page.total
+          this.dataList = res.data.data
+          this.total = res.data.total
         }
-      })
+      }).catch(_ => {})
     },
     exported () {
-      window.open('http://www/baidu.com')
+      let startTime = ''
+      let endTime = ''
+      if (this.date && this.date.length > 0) {
+        startTime = this.date[0]
+        endTime = this.date[1]
+      }
+      window.open(this.$store.state.domain_name + 'config/getStatExcel?startTime=' + startTime + '&endTime=' + endTime)
     }
   }
 }

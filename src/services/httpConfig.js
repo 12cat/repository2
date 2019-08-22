@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import axios from 'axios'
 import Vue from 'vue'
 
@@ -10,7 +11,7 @@ axios.interceptors.request.use(function (config) {
 }, function (error) {
   Vue.prototype.$store.commit('hideLoading')
   Vue.prototype.$message.error('ERROR: ' + error.toString())
-  return Promise.reject(error)
+  return error
 })
 
 // 影响拦截器，可以自定义 预处理内容
@@ -19,12 +20,12 @@ axios.interceptors.response.use(function (response) {
   Vue.prototype.$store.commit('hideLoading')
   if (response.data.success === 1) return response.data
   if (response.data.errorCode === 3) location.href = '/#/login'
-  Vue.prototype.$message.error(response.data.message)
-  return Promise.reject(response.data)
+  Vue.prototype.$message.error(response.data.errorMsg)
+  return false
 },
 function (error) {
   // 网络问题，通过2种方式提示，业务不处理
   Vue.prototype.$store.commit('hideLoading')
   Vue.prototype.$message.error('ERROR: ' + error.toString())
-  return Promise.reject(error)
+  return error
 })

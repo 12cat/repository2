@@ -95,7 +95,7 @@ export default {
     getAuthorityList () {
       this.$service.kms.getAuthorityList().then(res => {
         this.info(res.data)
-      })
+      }).catch(_ => {})
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import vue from 'vue'
 import axios from 'axios'
 import kms from './kms'

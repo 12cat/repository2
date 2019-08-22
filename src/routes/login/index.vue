@@ -59,7 +59,7 @@ export default {
             this.$router.push('/other/total')
           }
         }
-      })
+      }).catch(_ => {})
     }
   }
 }

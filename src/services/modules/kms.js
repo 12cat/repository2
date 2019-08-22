@@ -88,6 +88,8 @@ export default {
     // 操作文档
     {key: 'modifyDocument', url: 'document/modifyDocument'},
 
+    // 数据统计
+    {key: 'getStat', url: 'config/getStat'},
     // 日志搜索
     {key: 'getRecords', url: 'config/getRecords'}
   ]

@@ -22,7 +22,6 @@
             <el-option label="查看所有记录" value=""></el-option>
             <el-option label="仅查看访问记录" :value="1"></el-option>
             <el-option label="仅查看下载记录" :value="2"></el-option>
-            <el-option label="仅查看收藏记录" :value="3"></el-option>
             <el-option label="仅查看推荐记录" :value="4"></el-option>
             <el-option label="仅查看上传记录" :value="5"></el-option>
             <el-option label="仅查看登录记录" :value="6"></el-option>
@@ -35,7 +34,7 @@
       </div>
       <el-table :data="dataList">
         <el-table-column prop="name" label="姓名"></el-table-column>
-        <el-table-column prop="categoryName" label="操作"></el-table-column>
+        <el-table-column prop="title" label="操作"></el-table-column>
         <el-table-column label="操作时间">
           <template slot-scope="scope">
             <span>{{ scope.row.createTime | ymdt }}</span>
@@ -92,13 +91,19 @@ export default {
         pageSize: 20
       }).then(res => {
         if (res) {
-          this.dataList = res.data.page.data
-          this.total = res.data.page.total
+          this.dataList = res.data.data
+          this.total = res.data.total
         }
-      })
+      }).catch(_ => {})
     },
     exported () {
-      window.open('http://www/baidu.com')
+      let startTime = ''
+      let endTime = ''
+      if (this.date && this.date.length > 0) {
+        startTime = this.date[0]
+        endTime = this.date[1]
+      }
+      window.open(this.$store.state.domain_name + 'config/getRecordsExcel?startTime=' + startTime + '&endTime=' + endTime + '&query=' + this.query + '&operationType=' + this.operationType)
     }
   }
 }

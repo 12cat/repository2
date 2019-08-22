@@ -200,13 +200,13 @@ export default {
         level: 999
       }).then(res => {
         if (res) this.departmentList = res.data
-      })
+      }).catch(_ => {})
     },
     // 获取密级列表
     getSecrecyList () {
       this.$service.kms.getSecrecyList().then(res => {
         if (res) this.secrecyList = res.data
-      })
+      }).catch(_ => {})
     },
     // 获取数据列表
     getList (n) {
@@ -229,7 +229,7 @@ export default {
           this.pageIndex = res.data.pageIndex
           this.total = res.data.total
         }
-      })
+      }).catch(_ => {})
     },
     updateStatusDialog (row) {
       this.updateId = row.id
@@ -246,7 +246,7 @@ export default {
           this.$message.success('操作成功！')
           this.dialog1 = false
         }
-      })
+      }).catch(_ => {})
     },
     updateInfoDialog (row) {
       this.arr = []
@@ -280,7 +280,7 @@ export default {
           this.$message.success('操作成功！')
           this.dialog2 = false
         }
-      })
+      }).catch(_ => {})
     },
     updateRoleDialog (row) {
       this.update3id = row.id
@@ -293,7 +293,7 @@ export default {
         if (res) {
           this.roleList = res.data
         }
-      })
+      }).catch(_ => {})
     },
     updateRole () {
       this.$service.kms.modifyUserRole({
@@ -305,7 +305,7 @@ export default {
           this.getList(this.pageIndex)
           this.dialog3 = false
         }
-      })
+      }).catch(_ => {})
     }
   }
 }

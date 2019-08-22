@@ -106,7 +106,7 @@ export default {
         if (res) {
           this.roleList = res.data
         }
-      })
+      }).catch(_ => {})
     },
     // 删除角色
     deleteRole (row) {
@@ -120,8 +120,8 @@ export default {
         }).then(res => {
           this.$message.success('操作成功！')
           this.getRoleList()
-        })
-      })
+        }).catch(_ => {})
+      }).catch(_ => {})
     },
     updateRoleDialog (row) {
       if (row) {
@@ -150,7 +150,7 @@ export default {
             this.uploadList = res.data.upload.list || []
             this.dialog = true
           }
-        })
+        }).catch(_ => {})
       } else {
         this.id = null
         this.name = ''
@@ -166,7 +166,7 @@ export default {
             this.uploadList = res.data.upload.list || []
             this.dialog = true
           }
-        })
+        }).catch(_ => {})
       }
     },
     updateRole () {
@@ -188,7 +188,7 @@ export default {
           this.getRoleList()
           this.dialog = false
         }
-      })
+      }).catch(_ => {})
     }
   }
 }
