@@ -136,9 +136,9 @@ export default {
         sequence: this.modifySequence
       })
     },
-    modifySlide ({id, title, status, url, sequence}) {
+    modifySlide ({id, title, status, src, url, sequence}) {
       this.$service.kms.modifySlide({
-        id, title, status, url, sequence
+        id, title, status, src, url, sequence
       }).then(res => {
         if (res) {
           this.getList(this.pageIndex)
