@@ -10,7 +10,7 @@
         <el-table-column prop="title" label="标题"></el-table-column>
         <el-table-column label="图片">
           <template slot-scope="scope">
-            <img :src="scope.row.url" width="50">
+            <img :src="scope.row.src" width="50">
           </template>
         </el-table-column>
         <el-table-column label="状态">
@@ -39,6 +39,9 @@
             <el-radio :label="1">启用</el-radio>
             <el-radio :label="0">禁用</el-radio>
           </el-radio-group>
+        </el-form-item>
+        <el-form-item label="链接">
+          <el-input class="w200" v-model="param.url"></el-input>
         </el-form-item>
         <el-form-item label="图片">
           <el-upload class="upload-demo mar-l100"
@@ -83,6 +86,7 @@ export default {
         title: '',
         status: '',
         url: '',
+        src: '',
         sequence: ''
       },
       dataList: [],
@@ -107,11 +111,13 @@ export default {
         this.param.title = row.title
         this.param.status = row.status
         this.param.url = row.url
+        this.param.src = row.src
       } else {
         this.param.id = ''
         this.param.title = ''
         this.param.status = 1
         this.param.url = ''
+        this.param.src = ''
       }
       this.param.sequence = ''
       this.dialog = true
@@ -144,7 +150,7 @@ export default {
     },
     uploadFile (res, file) {
       if (res.data) {
-        this.param.url = res.data.path
+        this.param.src = res.data.path
         this.src = file.name
       }
     }
