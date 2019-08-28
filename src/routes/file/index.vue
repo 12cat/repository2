@@ -66,14 +66,6 @@
         <el-form-item label="文章标题">
           <el-input class="w180" v-model="param.title"></el-input>
         </el-form-item>
-        <el-form-item label="密级选择">
-          <el-select class="w180" v-model="param.secrecy" placeholder="请选择">
-            <el-option v-for="item in secrecyList" :key="item.id"
-              :label="item.name"
-              :value="item.id">
-            </el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item label="类目选择">
           <el-cascader class="w180" v-model="param.categoryName"
             :options="categoryList"
@@ -125,14 +117,14 @@ export default {
         children: 'childs'
       },
       dialog: false,
-      secrecyList: [],
       param: {
+        canDownload: '',
         id: '',
         title: '',
-        secrecy: '',
         category: '',
         tags: '',
         introduction: '',
+        public: '',
         name: '',
         path: '',
         size: '',
@@ -144,7 +136,6 @@ export default {
   },
   mounted () {
     this.getcategoryList()
-    this.getSecrecyList()
     this.getList()
   },
   methods: {
@@ -154,11 +145,6 @@ export default {
       this.startTime = ''
       this.endTime = ''
       this.recommend = ''
-    },
-    getSecrecyList () {
-      this.$service.kms.getSecrecyList().then(res => {
-        this.secrecyList = res.data || []
-      }).catch(_ => {})
     },
     getcategoryList () {
       this.$service.kms.getCategoryList({
@@ -215,7 +201,6 @@ export default {
       this.$service.kms.getDocumentById({id}).then(res => {
         this.param.id = res.data.id
         this.param.title = res.data.title
-        this.param.secrecy = res.data.secrecy
         this.param.category = res.data.category
         this.param.tags = res.data.tags
         this.param.introduction = res.data.introduction
@@ -223,6 +208,8 @@ export default {
         this.param.path = res.data.path
         this.param.size = res.data.size
         this.param.type = res.data.type
+        this.param.public = 1
+        this.param.canDownload = res.data.canDownload
         this.arr = []
         this.flag = true
         this.dist(this.param.category, this.categoryList)
@@ -239,14 +226,16 @@ export default {
       this.flag && this.arr.splice(-1, 1)
     },
     uplodaDocument (saveDraft) {
-      let n = this.param.category.length
-      this.param.category = this.param.category[n - 1]
+      let n = this.param.categoryName.length
+      this.param.category = this.param.categoryName[n - 1]
+      delete this.param.categoryName
       this.param.saveDraft = 0
       this.$service.kms.uploadDocument(
         [this.param]
       ).then(res => {
         if (res) {
-          this.$message.success('文档上传成功！')
+          this.$message.success('文档修改成功！')
+          this.dialog = false
         }
       }).catch(_ => {})
     },

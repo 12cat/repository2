@@ -107,6 +107,7 @@ export default {
               <el-button style="font-size: 12px;" type="text" on-click={ () => this.addDepartmentDialog(data) }>添加</el-button>
               <el-button style="font-size: 12px;" type="text" on-click={ () => this.updateNameDialog(data) }>编辑</el-button>
               <el-button style="font-size: 12px;" type="text" on-click={ () => this.setSequenceDialog(data) }>调整顺序</el-button>
+              <el-button style="font-size: 12px;" type="text" on-click={ () => this.delDialog(data) }>删除</el-button>
             </span>
           </span>
         </span>)
@@ -167,6 +168,21 @@ export default {
           this.$message.success('操作成功！')
           this.dialog3 = false
         }
+      }).catch(_ => {})
+    },
+    delDialog (data) {
+      this.$confirm(`确认需要删除部门【${data.name}】吗？`, '提示', {
+        cancelButtonText: '取消',
+        confirmButtonText: '确认',
+        type: 'warning'
+      }).then(() => {
+        this.$service.kms.modifyDepartment({
+          id: data.id,
+          del: 1
+        }).then(res => {
+          this.$message.success('操作成功！')
+          this.getList()
+        }).catch(_ => {})
       }).catch(_ => {})
     }
   }
