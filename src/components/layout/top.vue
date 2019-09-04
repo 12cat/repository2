@@ -1,7 +1,7 @@
 <template>
   <div class="top">
     <ul class="left">
-      <li><a class="logo" href="/"></a></li>
+      <li><a class="logo"></a></li>
       <li><span class="title" v-text="title"></span></li>
     </ul>
     <ul class="right">
