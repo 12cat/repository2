@@ -236,6 +236,7 @@ export default {
         if (res) {
           this.$message.success('文档修改成功！')
           this.dialog = false
+          this.getList()
         }
       }).catch(_ => {})
     },
